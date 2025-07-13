@@ -1,31 +1,43 @@
 # Resume-Job Description Matcher
 
-A simple machine learning application that uses BERT embeddings to match resumes against job descriptions. This project provides a FastAPI backend for processing and a Streamlit frontend for user interaction.
+A semantic resume-job matching system powered by SBERT sentence embeddings and FastAPI. Upload job descriptions and multiple resumes (PDF/DOCX/TXT), and the system will return the top-matching resumes ranked by semantic similarity.
 
 ## Features
 
-- Upload multiple resumes in PDF format
-- Enter job description text
-- Rank resumes based on similarity to job description using BERT embeddings
-- View similarity scores and text previews of matched resumes
+- 🔍 **Semantic Similarity** using Sentence-BERT (MPNet)
+- 📄 **Multi-format Resume Parsing**: PDF, DOCX, and TXT
+- 🧹 **Text Preprocessing**: Cleanses and optionally prioritizes relevant sections (skills, experience, etc.)
+- 🧠 **Cosine Similarity Matching** between resumes and job description
+- ⚙️ **REST API** using FastAPI
+- 🌐 **Frontend Integration Ready** (PowerApps, Streamlit, etc.)
+- ✅ **CORS Enabled** for frontend clients
 
 ## Project Structure
 
 ```
 resume-job-matcher/
 ├── api/               # FastAPI backend
-│   ├── __init__.py
-│   ├── matcher.py     # Resume matching logic using BERT
-│   └── main.py        # FastAPI app and endpoints
-├── app/
-│   └── streamlit_app.py  # Streamlit frontend
-├── models/            # For any additional model files
-│   └── __init__.py
+│   └── endpoints.py
+├── models/
+│   └── schemas.py 
+├── resumehrconnect/
+│   ├── matcher.py
+│   └── pdf_extract.py
+├── main.py
 ├── requirements.txt   # Project dependencies
 ├── README.md          # Project documentation
 └── .gitignore         # Git ignore file
 ```
+## 📦 Tech Stack
 
+- **FastAPI** – for RESTful API
+- **sentence-transformers** – for semantic vector embeddings
+- **PyPDF2, docx2txt** – for file parsing
+- **Pydantic** – for data validation
+- **Uvicorn** – for ASGI server
+- **PowerApps** – frontend integration (optional)
+
+---
 ## Installation
 
 1. Clone this repository:
@@ -57,55 +69,3 @@ resume-job-matcher/
    uvicorn api.main:app --reload
    ```
    The API will be available at `http://localhost:8000`.
-
-2. In a separate terminal window, start the Streamlit frontend:
-   ```
-   streamlit run app/streamlit_app.py
-   ```
-   The Streamlit app will open in your browser (usually at `http://localhost:8501`).
-
-3. Using the application:
-   - Enter a job description in the text area
-   - Upload multiple resume PDF files
-   - Click the "Match Resumes" button
-   - View the ranked results
-
-## How It Works
-
-1. The BERT model generates embeddings for the job description and each resume
-2. Cosine similarity is calculated between the job description embedding and each resume embedding
-3. Resumes are ranked based on their similarity scores
-4. Results are displayed in the Streamlit UI with preview text from each resume
-
-## Requirements
-
-- Python 3.8+
-- PyTorch
-- Transformers (Hugging Face)
-- FastAPI
-- Streamlit
-- PyPDF2 (for PDF text extraction)
-- Other dependencies listed in requirements.txt
-
-## Limitations
-
-- Only supports PDF format for resumes
-- BERT has a token limit of 512 tokens, so very long texts will be truncated
-- Text extraction from PDFs may not be perfect for all formats
-
-## Future Improvements
-
-- Add support for more file formats (DOCX, TXT)
-- Implement more sophisticated text preprocessing
-- Add custom model training options
-- Improve text extraction from complex PDF formats
-- Add user authentication and result saving
-
-## License
-
-MIT
-
-## Acknowledgments
-
-- This project uses the BERT model from Hugging Face's Transformers library
-- Built with FastAPI and Streamlit frameworks
