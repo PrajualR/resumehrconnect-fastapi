@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Form
-from resumehrconnect.matcher import ResumeMatcher
-from resumehrconnect.pdf_extract import extract_text, preprocess_resume_text
-from models.schemas import MatchResponse
+from src.resumehrconnect.matcher import ResumeMatcher
+from src.resumehrconnect.pdf_extract import extract_text, preprocess_resume_text
+from src.models.schemas import MatchResponse
 from typing import List
 
 router = APIRouter()

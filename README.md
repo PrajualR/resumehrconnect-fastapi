@@ -16,13 +16,14 @@ A semantic resume-job matching system powered by SBERT sentence embeddings and F
 
 ```
 resume-job-matcher/
-├── api/               # FastAPI backend
-│   └── endpoints.py
-├── models/
-│   └── schemas.py 
-├── resumehrconnect/
-│   ├── matcher.py
-│   └── pdf_extract.py
+├── src/
+│  ├── api/               # FastAPI backend
+│  │   └── endpoints.py
+│  ├── models/
+│  │   └── schemas.py 
+│  └── resumehrconnect/
+│      ├── matcher.py
+│      └── pdf_extract.py
 ├── main.py
 ├── requirements.txt   # Project dependencies
 ├── README.md          # Project documentation

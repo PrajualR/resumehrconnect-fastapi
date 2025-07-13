@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.endpoints import router as resume_router
+from src.api.endpoints import router as resume_router
 
 app = FastAPI(title="Resume Matcher API")
 
